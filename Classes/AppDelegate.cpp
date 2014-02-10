@@ -3,6 +3,8 @@
 
 USING_NS_CC;
 
+Size AppDelegate::designResolution = Size(600,400);
+
 AppDelegate::AppDelegate() {
 
 }
@@ -19,6 +21,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     glview = GLView::create("yap");
     director->setOpenGLView(glview);
   }
+
+  auto frameSize = director->getOpenGLView()->getFrameSize();
+  
+  director->getOpenGLView()->setDesignResolutionSize(frameSize.width,
+                                                     frameSize.height,
+                                                     ResolutionPolicy::NO_BORDER);
   
   // turn on display FPS
   director->setDisplayStats(true);

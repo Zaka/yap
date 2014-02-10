@@ -44,6 +44,7 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/GameScene.cpp
   Classes/MenuScene.cpp
+  Classes/Ball.cpp
 )
 
 set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)
