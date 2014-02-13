@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-Size AppDelegate::designResolution = Size(600,400);
+Size AppDelegate::designResolution = Size(400,300);
 
 AppDelegate::AppDelegate() {
 

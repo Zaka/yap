@@ -70,9 +70,9 @@ void MenuScene::onExit(Object* pSender)
 
 void MenuScene::onPlay(Object* pSender)
 {
-  std::cout << "Playing..." << std::endl;
-
-  auto scene = GameScene::createScene();
+  std::cout << "onPlay..." << std::endl;
+  
+  Scene *scene = new GameScene();
   
   Director::getInstance()->replaceScene(scene);
 }

@@ -1,28 +1,41 @@
 #include <iostream>
+
 #include "Ball.h"
+#include "VisibleRect.h"
 
 USING_NS_CC;
 
-Ball::Ball() {
+Ball::Ball()
+    :_velocity(Point(100,100)){
     std::cout << "Ball::Constructor" << std::endl;
-    _mouseListener = EventListenerMouse::create();
-    _mouseListener->onMouseMove = CC_CALLBACK_1(Ball::onMouseMove, this);
-
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(_mouseListener, this);
 }
 
-Ball::~Ball() {
-    _eventDispatcher->removeEventListener(_mouseListener);
+Ball::~Ball() {}
+
+std::string toString(Point point) {
+    std::stringstream ss;
+    ss << point.x;
+    ss << point.y;
+
+    return ss.str();
 }
 
-void Ball::onMouseMove(Event *event) {
-    EventMouse *e = (EventMouse*)event;
+void Ball::move(float delta) {
+    std::cout << "Ball: moving..." << std::endl;
 
-    std::cout << "Ball x: " << e->getCursorX()
-              << " y: " << e->getCursorY()
-              << std::endl;
+    std::cout << "Ball: previous position: " << toString(getPosition()) << std::endl;
+        
+    this->setPosition(getPosition() + getVelocity() * delta);
 
-    setPosition(Point(e->getCursorX(), e->getCursorY()));
+    std::cout << "Ball: after setting position: " << toString(getPosition()) << std::endl;
+    
+    if (getPosition().x > VisibleRect::right().x - radius()) {
+        setPosition( Point( VisibleRect::right().x - radius(), getPosition().y) );
+        _velocity.x *= -1;
+    } else if (getPosition().x < VisibleRect::left().x + radius()) {
+        setPosition( Point(VisibleRect::left().x + radius(), getPosition().y) );
+        _velocity.x *= -1;
+    }
 }
 
 Ball* Ball::createWithTexture(Texture2D* aTexture)
@@ -34,4 +47,15 @@ Ball* Ball::createWithTexture(Texture2D* aTexture)
     return pBall;
 }
 
+Point const Ball::getVelocity() {
+    return _velocity;
+}
 
+void Ball::setVelocity(Point velocity) {
+    _velocity = velocity;
+}
+
+float Ball::radius()
+{
+    return getTexture()->getContentSize().width / 2;
+}
