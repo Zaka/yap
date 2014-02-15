@@ -35,7 +35,8 @@ Point VisibleRect::right()
 Point VisibleRect::top()
 {
     lazyInit();
-    return Point(s_visibleRect.origin.x+s_visibleRect.size.width/2, s_visibleRect.origin.y+s_visibleRect.size.height);
+    return Point(s_visibleRect.origin.x + s_visibleRect.size.width/2,
+                 s_visibleRect.origin.y + s_visibleRect.size.height);
 }
 
 Point VisibleRect::bottom()

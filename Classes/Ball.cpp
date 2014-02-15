@@ -2,11 +2,12 @@
 
 #include "Ball.h"
 #include "VisibleRect.h"
+#include "AppDelegate.h"
 
 USING_NS_CC;
 
 Ball::Ball()
-    :_velocity(Point(100,100)){
+    :_velocity(Point(400,400)){
     std::cout << "Ball::Constructor" << std::endl;
 }
 
@@ -14,13 +15,18 @@ Ball::~Ball() {}
 
 std::string toString(Point point) {
     std::stringstream ss;
-    ss << point.x;
-    ss << point.y;
-
+    ss << "(" << point.x << ", "  << point.y << ")";
+    
     return ss.str();
 }
 
 void Ball::move(float delta) {
+    // TODO:
+    // Make the ball change direction if reaches y limit also
+    // Investigate which information is giving getPosition method, and
+    // compare it to the info provided by
+    // AppDelegate::designResolution and VisibleRect::...
+    
     std::cout << "Ball: moving..." << std::endl;
 
     std::cout << "Ball: previous position: " << toString(getPosition()) << std::endl;
@@ -28,6 +34,14 @@ void Ball::move(float delta) {
     this->setPosition(getPosition() + getVelocity() * delta);
 
     std::cout << "Ball: after setting position: " << toString(getPosition()) << std::endl;
+
+    // if (getPosition().x > AppDelegate::designResolution.width - radius()) {
+    //     setPosition( Point( AppDelegate::designResolution.width - radius(), getPosition().y) );
+    //     _velocity.x *= -1;
+    // } else if (getPosition().x < 0 + radius()) {
+    //     setPosition( Point(0 + radius(), getPosition().y) );
+    //     _velocity.x *= -1;
+    // }
     
     if (getPosition().x > VisibleRect::right().x - radius()) {
         setPosition( Point( VisibleRect::right().x - radius(), getPosition().y) );
@@ -35,6 +49,14 @@ void Ball::move(float delta) {
     } else if (getPosition().x < VisibleRect::left().x + radius()) {
         setPosition( Point(VisibleRect::left().x + radius(), getPosition().y) );
         _velocity.x *= -1;
+    }
+
+    if (getPosition().y > VisibleRect::top().y - radius()) {
+        setPosition(Point(getPosition().x, VisibleRect::top().y - radius()));
+        _velocity.y *= -1;
+    } else if (getPosition().y < VisibleRect::bottom().y + radius()) {
+        setPosition(Point(getPosition().x, VisibleRect::bottom().y + radius()));
+        _velocity.y *= -1;
     }
 }
 
