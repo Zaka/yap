@@ -10,6 +10,7 @@ public:
     
     Paddle();
     ~Paddle();
+    cocos2d::Rect getRect();
     void onMouseMove(cocos2d::Event *event);
     static Paddle* createWithTexture(cocos2d::Texture2D* texture);
 };

@@ -25,15 +25,5 @@ GameLayer::GameLayer()
 
 void GameLayer::doStep(float delta) {
     _ball->move(delta);
-
-    // for (auto& paddle : _paddles)
-    //     {
-    //         _ball->collideWithPaddle( paddle );
-    //     }
-
-    // if (_ball->getPosition().y > VisibleRect::top().y - kStatusBarHeight + _ball->radius())
-    //     resetAndScoreBallForPlayer( kLowPlayer );
-    // else if (_ball->getPosition().y < VisibleRect::bottom().y-_ball->radius())
-    //     resetAndScoreBallForPlayer( kHighPlayer );
-
+    _ball->collideWithPaddle(_paddle);
 }

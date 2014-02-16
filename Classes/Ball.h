@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 
+class Paddle;
 
 class Ball : public cocos2d::Sprite
 {
@@ -15,7 +16,7 @@ public:
     void move(float delta);
     
     static Ball* createWithTexture(cocos2d::Texture2D* aTexture);
-    //void onMouseMove(cocos2d::Event *event);
+    void collideWithPaddle(Paddle* paddle);
 private:
     cocos2d::Point const getVelocity();
     void setVelocity(cocos2d::Point velocity);

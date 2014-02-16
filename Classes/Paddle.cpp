@@ -41,3 +41,9 @@ Paddle* Paddle::createWithTexture(Texture2D* texture) {
     
     return pPaddle;
 }
+
+Rect Paddle::getRect()
+{
+    auto s = getTexture()->getContentSize();
+    return Rect(-s.width / 2, -s.height / 2, s.width, s.height);
+}
