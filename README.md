@@ -8,7 +8,7 @@ How to build
 
 1. Linux
 
-   mkdir build
-   cd build
-   cmake ..
-   make
+   $ mkdir build
+   $ cd build
+   $ cmake ..
+   $ make
