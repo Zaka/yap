@@ -7,8 +7,8 @@
 
 USING_NS_CC;
 
-Ball::Ball()
-    :_velocity(Point(400,400)){
+Ball::Ball() {
+    setAnchorPoint(Point::ZERO);
 }
 
 Ball::~Ball() {}
@@ -59,20 +59,28 @@ float Ball::radius()
     return getTexture()->getContentSize().width / 2;
 }
 
-void Ball::collideWithPaddle(Paddle* paddle) {
-    auto paddleRect = paddle->getRect();
-    paddleRect.origin.x += paddle->getPosition().x;
-    paddleRect.origin.y += paddle->getPosition().y;
-    
-    float lowY  = paddleRect.getMinY();
-    //float midY  = paddleRect.getMidY();
-    float highY = paddleRect.getMaxY();
-    
-    float leftX  = paddleRect.getMinX();
+std::string toString(Point point) {
+    std::stringstream ss;
 
-    if (getPosition().y >= lowY
-        && getPosition().y <= highY
-        && getPosition().x + radius() > leftX) {
-        _velocity.x *= -1;
+    ss << "(x: " << point.x << ", y: " << point.y << ")";
+
+    return ss.str();
+}
+
+std::string toString(Rect rect) {
+    std::stringstream ss;
+
+    ss << "Lower Left Corner: "
+       << toString(Point(rect.getMinX(), rect.getMinY())) << " "
+       << "Upper Right Corner: "
+       << toString(Point(rect.getMaxX(), rect.getMaxY()));
+
+    
+    return ss.str();
+}
+
+void Ball::collideWithPaddle(Paddle* paddle) {
+    if (paddle->collideWithBall(this)) {
+        _velocity.x = paddle->sign() * std::abs(_velocity.x);
     }
 }

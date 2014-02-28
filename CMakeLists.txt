@@ -48,6 +48,8 @@ set(GAME_SRC
   Classes/VisibleRect.cpp
   Classes/GameLayer.cpp
   Classes/Paddle.cpp
+  Classes/MousePaddle.cpp
+  Classes/KeyboardPaddle.cpp
 )
 
 set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)

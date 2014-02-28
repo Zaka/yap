@@ -17,10 +17,12 @@ public:
     
     static Ball* createWithTexture(cocos2d::Texture2D* aTexture);
     void collideWithPaddle(Paddle* paddle);
-private:
+    // cocos2d::Rect getRect();
     cocos2d::Point const getVelocity();
     void setVelocity(cocos2d::Point velocity);
     float radius();
+private:
+
 };
 
 #endif
