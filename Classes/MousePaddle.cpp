@@ -55,23 +55,23 @@ std::string MousePaddle::toString(Rect rect) {
 }
 
 bool MousePaddle::collideWithBall(Ball *ball) {
-    auto ballBBox = ball->getBoundingBox();
     auto paddleBBox = getBoundingBox();
+    auto ballBBox = ball->getBoundingBox();
+        
+    float bRight = ballBBox.getMaxX();
+    float bHigh = ballBBox.getMaxY();
+    float bLow = ballBBox.getMinY();
 
-    float bRightX = ballBBox.getMaxX();
-    float bHighY = ballBBox.getMaxY();
-    float bLowY = ballBBox.getMinY();
-
-    float pLeftX = paddleBBox.getMinX();
-    float pHighY = paddleBBox.getMaxY();
+    float pLeft = paddleBBox.getMinX();
+    float pHigh = paddleBBox.getMaxY();
     float pLowY = paddleBBox.getMinY();
     
-    if (bRightX >= pLeftX) {
-        if (bHighY <= pHighY
-            && bHighY >= pLowY) {
+    if (bRight >= pLeft) {
+        if (bHigh <= pHigh
+            && bHigh >= pLowY) {
             return true;
-        } else if (bLowY <= pHighY
-                   && bLowY >= pLowY) {
+        } else if (bLow <= pHigh
+                   && bLow >= pLowY) {
             return true;
         }
     }

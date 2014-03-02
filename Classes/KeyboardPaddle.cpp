@@ -55,20 +55,20 @@ bool KeyboardPaddle::collideWithBall(Ball* ball) {
     auto paddleBBox = getBoundingBox();
     auto ballBBox = ball->getBoundingBox();
 
-    float bLeftX = ballBBox.getMinX();
-    float bHighY = ballBBox.getMaxY();
-    float bLowY = ballBBox.getMinY();
+    float bLeft = ballBBox.getMinX();
+    float bHigh = ballBBox.getMaxY();
+    float bLow = ballBBox.getMinY();
 
-    float pRightX = paddleBBox.getMaxX();
-    float pHighY = paddleBBox.getMaxY();
-    float pLowY = paddleBBox.getMinY();
+    float pRight = paddleBBox.getMaxX();
+    float pHigh = paddleBBox.getMaxY();
+    float pLow = paddleBBox.getMinY();
 
-    if (bLeftX <= pRightX) {
-        if (bHighY <= pHighY
-            && bHighY >= pLowY) {
+    if (bLeft <= pRight) {
+        if (bHigh <= pHigh
+            && bHigh >= pLow) {
             return true;
-        } else if (bLowY <= pHighY
-                   && bLowY >= pLowY) {
+        } else if (bLow <= pHigh
+                   && bLow >= pLow) {
             return true;
         }
     }

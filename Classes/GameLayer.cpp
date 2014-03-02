@@ -45,8 +45,11 @@ void GameLayer::doStep(float delta) {
     //Increase velocity
     _ball->setVelocity(Point(1.0002 * _ball->getVelocity().x,
                              1.0002 * _ball->getVelocity().y));
+
+    auto ballRight = _ball->getBoundingBox().getMaxX();
+    auto ballLeft = _ball->getBoundingBox().getMinX();
         
-    if (_ball->getPosition().x >= VisibleRect::right().x - _ball->radius()) {
+    if (ballRight >= VisibleRect::right().x) {
         //Score for left player
 
         //Reset ball's' position
@@ -54,7 +57,7 @@ void GameLayer::doStep(float delta) {
         _ball->setVelocity(Point(-100, -100));
     }
 
-    if (_ball->getPosition().x <= VisibleRect::left().x + _ball->radius()) {
+    if (ballLeft <= VisibleRect::left().x) {
         //Score for right player
 
         //Reset ball's position

@@ -16,16 +16,20 @@ Ball::~Ball() {}
 void Ball::move(float delta) {
     this->setPosition(getPosition() + getVelocity() * delta);
 
-    if (getPosition().x > VisibleRect::right().x - radius()) {
+    auto bBox = getBoundingBox();
+    auto ballRight = bBox.getMaxX();
+    auto ballLeft = bBox.getMinX();
+    
+    if (ballRight > VisibleRect::right().x) {
         setPosition(Point(VisibleRect::right().x - radius(),
                           getPosition().y) );
         _velocity.x *= -1;
-    } else if (getPosition().x < VisibleRect::left().x + radius()) {
+    } else if (ballLeft < VisibleRect::left().x) {
         setPosition(Point(VisibleRect::left().x + radius(),
                           getPosition().y) );
         _velocity.x *= -1;
     }
-
+    
     if (getPosition().y > VisibleRect::top().y - radius()) {
         setPosition(Point(getPosition().x,
                           VisibleRect::top().y - radius()));
