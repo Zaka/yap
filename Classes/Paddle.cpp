@@ -24,3 +24,17 @@ void Paddle::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
             // auto paddleRect = getRect();
     }
 }
+
+Rect Paddle::getBoundingBox() const 
+{
+        Rect result = Sprite::getBoundingBox();
+
+        // This offset improves the paddle collision feeling
+        // It's the size of the ball
+        auto offset = 16.0f; 
+            
+        result.origin.y += offset/2;
+        result.size.height -= offset;
+
+        return result;
+}

@@ -9,6 +9,8 @@ class Paddle;
 class GameLayer : public cocos2d::Layer {
     static const float PADDLE_01_X_POS;
     static const float PADDLE_02_X_POS;
+    static const cocos2d::Point INIT_VELOCITY;
+    
     Ball* _ball;
     Paddle* _paddle_01;
     Paddle* _paddle_02;

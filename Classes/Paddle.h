@@ -15,6 +15,7 @@ public:
     virtual bool collideWithBall(Ball *ball) = 0;
     void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
     virtual int const sign() const = 0;
+    virtual cocos2d::Rect getBoundingBox() const;
 };
 
 #endif //PADDLE_H

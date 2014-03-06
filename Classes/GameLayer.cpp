@@ -10,6 +10,7 @@ USING_NS_CC;
 
 const float GameLayer::PADDLE_01_X_POS = 910;
 const float GameLayer::PADDLE_02_X_POS = 10;
+const Point GameLayer::INIT_VELOCITY = Point(400, 400);
 
 GameLayer::GameLayer()
     :_ball(NULL) {
@@ -27,7 +28,7 @@ GameLayer::GameLayer()
     _paddle_01->setPosition(GameLayer::PADDLE_01_X_POS, 200);
     _paddle_02->setPosition(GameLayer::PADDLE_02_X_POS, 200);
 
-    _ball->setVelocity(Point(100, 100));
+    _ball->setVelocity(GameLayer::INIT_VELOCITY);
     
     addChild(_ball);
     addChild(_paddle_01);
@@ -54,7 +55,7 @@ void GameLayer::doStep(float delta) {
 
         //Reset ball's' position
         _ball->setPosition(VisibleRect::right().x - 100, VisibleRect::center().y);
-        _ball->setVelocity(Point(-100, -100));
+        _ball->setVelocity(-GameLayer::INIT_VELOCITY);
     }
 
     if (ballLeft <= VisibleRect::left().x) {
@@ -62,6 +63,6 @@ void GameLayer::doStep(float delta) {
 
         //Reset ball's position
         _ball->setPosition(VisibleRect::left().x + 100, VisibleRect::center().y);
-        _ball->setVelocity(Point(100, 100));
+        _ball->setVelocity(GameLayer::INIT_VELOCITY);
     }
 }
