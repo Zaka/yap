@@ -2,23 +2,25 @@
 ** DONE Add second player
    The second player can be controller with two keystrokes
    (e.g. up and down)
-** TODO Add collision detection
-*** Add bounding box collision
-*** Add pixel perfect collision
-** Add score functionality
-*** Each time the ball reaches the one of two side
+** DONE Add collision detection
+*** DONE Add bounding box collision
+*** DISCARDED Add pixel perfect collision
+** TODO Add change of direction
+   when colliding with the paddle edges
+** TODO Add score functionality
+*** TODO Each time the ball reaches the one of two side
     the opponent gets one point.
-*** Improve the collision when the ball heats the
+*** TODO Improve the collision when the ball heats the
     paddle from above or below.
-** Add networking
-*** Add ability to play with other people
+** TODO Add networking
+*** TODO Add ability to play with other people
     trough the Internet.
-** Polishing
-*** Add pause menu
-*** Full screen drawing
-*** Add Background with interactive scores
-**** Add background
-**** Add interactive scores
-** Publish
-*** Steam
-*** Free in a web page
+** TODO Polishing
+*** TODO Add pause menu
+*** TODO Full screen drawing
+*** TODO Add Background with interactive scores
+**** TODO Add background
+**** TODO Add interactive scores
+** TODO Publish
+*** TODO Steam
+*** TODO Free in a web page
